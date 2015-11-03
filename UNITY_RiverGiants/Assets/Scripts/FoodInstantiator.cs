@@ -24,9 +24,9 @@ public class FoodInstantiator : MonoBehaviour
         {
             int childCount = transform.childCount;
 
-            for (int i = 0; i < maxSpawn - childCount; i++)
+            for (int i = 0; i < maxSpawn - (childCount - 1); i++)
             {
-                GameObject fishChild = Instantiate(spawnPrefab, this.transform.position + new Vector3(Random.Range(-5, 10), Random.Range(-5,10),0), Quaternion.identity) as GameObject;
+                GameObject fishChild = Instantiate(spawnPrefab, this.transform.position + new Vector3(Random.Range(-5, 10), Random.Range(-5, 10), 0), Quaternion.identity) as GameObject;
                 fishChild.transform.parent = this.transform;
             }
         }
