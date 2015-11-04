@@ -18,11 +18,18 @@ public class Suck_It : MonoBehaviour {
 	
     void OnTriggerEnter (Collider col)
     {
-        initPos = col.transform.position;
+        if (col.tag == "Food")
+        {
+            FishMovement suckedit = col.gameObject.GetComponent<FishMovement>();
 
-        distance = Vector3.Distance(transform.position, initPos);
+            suckedit.sucked = false;
 
-        StartCoroutine(SuckIt(col.transform));
+            initPos = col.transform.position;
+
+            distance = Vector3.Distance(transform.position, initPos);
+
+            StartCoroutine(SuckIt(col.transform));
+        }
     }
 
     IEnumerator SuckIt(Transform col)
