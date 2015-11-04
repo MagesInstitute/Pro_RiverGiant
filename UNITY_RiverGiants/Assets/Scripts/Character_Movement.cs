@@ -88,6 +88,11 @@ public class Character_Movement : MonoBehaviour
     void Update()
     {
 
+#if UNITY_EDITOR
+        x = Input.GetAxis("Horizontal");
+        y = Input.GetAxis("Vertical");
+#else
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             joystiqgrp.SetActive(true);
@@ -120,7 +125,7 @@ public class Character_Movement : MonoBehaviour
         {
             cspeed = 0;
         }
-
+#endif
         transform.Translate(x/100 * cspeed * Time.deltaTime, y/100 * cspeed * Time.deltaTime, 0, Camera.main.transform);
         newRotation = Quaternion.LookRotation(new Vector3(x,y,0));
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * cspeed);
