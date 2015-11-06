@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Suck_It : MonoBehaviour {
 
-    float distance;
-
     Vector3 initPos;
 
     public float speed;
@@ -18,29 +16,27 @@ public class Suck_It : MonoBehaviour {
 	
     void OnTriggerEnter (Collider col)
     {
-        if (col.tag == "Food")
+        if (col.tag == "Player")
         {
-            FishMovement suckedit = col.gameObject.GetComponent<FishMovement>();
 
-            suckedit.sucked = false;
+            initPos = transform.position;
 
-            initPos = col.transform.position;
+            float distance = Vector3.Distance(col.transform.position, initPos);
 
-            distance = Vector3.Distance(transform.position, initPos);
-
-            StartCoroutine(SuckIt(col.transform));
+            StartCoroutine(SuckIt(col.transform, distance));
         }
     }
 
-    IEnumerator SuckIt(Transform col)
+    IEnumerator SuckIt(Transform col, float distance)
     {
+
         while (distance > 0.1)
         {
             t += speed * Time.deltaTime;
 
-            col.position = Vector3.Lerp(initPos, transform.position, t);
+            transform.position = Vector3.Lerp(initPos, col.transform.position, t);
 
-            distance = Vector3.Distance(transform.position,initPos);
+            distance = Vector3.Distance(col.transform.position,initPos);
 
             yield return null;
         }

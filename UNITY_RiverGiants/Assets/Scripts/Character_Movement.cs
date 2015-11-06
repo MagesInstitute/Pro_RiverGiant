@@ -33,7 +33,7 @@ public class Character_Movement : MonoBehaviour
 
     }
 
-    void OnTriggerEnter (Collider col)
+    void OnTriggerEnter2D (Collider col)
     {
         switch (col.tag)
         {

@@ -8,7 +8,6 @@ public class FishMovement : MonoBehaviour
     public float min = 1;
     public float tSpeed = 1;
     public float multiplier = 3;
-    public bool sucked = false;
 
     float speed;
     Quaternion newRotation;
@@ -31,14 +30,12 @@ public class FishMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (sucked == false)
-        {
             transform.position = Vector3.Lerp(transform.position, target.position + offset * multiplier, speed * Time.deltaTime);
 
             velocity = transform.position - previous;
             newRotation = Quaternion.LookRotation(velocity);
             previous = transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * tSpeed);
-        }
-	}
+        
+    }
 }
