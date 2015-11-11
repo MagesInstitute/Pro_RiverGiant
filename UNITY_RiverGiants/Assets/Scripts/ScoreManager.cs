@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -7,12 +8,18 @@ public class ScoreManager : MonoBehaviour
     public static int eatingScore = 0; //Total Score for the Food
     public static int comboCount = 1; //Combo Count (Maximum x5)
     public static bool triggerCombo = false; //Detection if Combo is activated (Public because TriggerScript can use it to launch Animation for Combo)
+    public static Text txtScore;
 
     //Static Variable
     static bool newFood = false; //If Combo is activate, set to true each time eating food to refresh the timer
     static float triggerTime = 1; //Trigger time to activate Combo
     static float comboTime = 3; //Time to timeout Combo
     static int foodCount = 0; //Food Count before activating Combo
+
+    void Start()
+    {
+        txtScore = GameObject.Find("txtScore").GetComponent<Text>();
+    }
 
     void Update()
     {
@@ -70,14 +77,13 @@ public class ScoreManager : MonoBehaviour
         {
             newFood = true;
 
-            if (comboCount < 5)
-                comboCount++;
-            else if (comboCount >= 5)
-                comboCount = 5;
+            comboCount++;
+            comboCount = Mathf.Clamp(comboCount, 1, 5);
         }
 
         eatingScore += (value * comboCount);
-        Debug.Log("Current Score: " + eatingScore);
+        //Debug.Log("Current Score: " + eatingScore);
+        txtScore.text = "Score: " + eatingScore;
         
         /*if (foodCount < 3)
         {
@@ -103,7 +109,8 @@ public class ScoreManager : MonoBehaviour
         eatingScore += (value * comboCount);*/
     }
 
-    /*static IEnumerator TimerMinor()
+    /*stati
+    c IEnumerator TimerMinor()
     {
         foodCount = 0;
         yield return new WaitForSeconds(triggerTime);

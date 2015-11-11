@@ -27,25 +27,31 @@ public class Character_Movement : MonoBehaviour
 
     Vector2 startPos;
 
+    Rigidbody2D rb;
+
+    void Awake()
+    {
+        GameManager.Initialize();
+    }
+
     // Use this for initialization
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void OnTriggerEnter2D (Collider col)
+    void OnTriggerEnter2D (Collider2D col)
     {
         switch (col.tag)
-        {
+        { 
             case "Food":
-                print("Yummy");
+                GameManager.OnHitFood(col.GetComponent<FishMovement>().sizeGrowth);
+                ScoreManager.AddScore(col.GetComponent<FishMovement>().scoreValue);
                 Destroy(col.gameObject);
                 break;
-
             case "Poison":
                 print("You have been poisoned");
                 break;
-
             default:
                 print("Ouch");
                 break;
@@ -121,7 +127,8 @@ public class Character_Movement : MonoBehaviour
         {
             cspeed = 0;
         }
-        transform.Translate(x/100 * cspeed * Time.deltaTime, y/100 * cspeed * Time.deltaTime, 0, Camera.main.transform);
+        rb.AddForce(new Vector2(x * cspeed * Time.deltaTime, y * cspeed * Time.deltaTime), ForceMode2D.Force);
+        //transform.Translate(x/100 * cspeed * Time.deltaTime, y/100 * cspeed * Time.deltaTime, 0, Camera.main.transform);
         newRotation = Quaternion.LookRotation(new Vector3(x,y,0));
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * cspeed);
     }
