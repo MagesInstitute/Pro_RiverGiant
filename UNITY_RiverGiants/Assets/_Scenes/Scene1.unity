@@ -885,7 +885,7 @@ GameObject:
   - 23: {fileID: 675771060}
   - 54: {fileID: 675771065}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Head
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -943,7 +943,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -.717523992, z: 0, w: .696533918}
   m_LocalPosition: {x: -.0125482017, y: -.0118798455, z: .452444494}
   m_LocalScale: {x: .508931577, y: 1.40801573, z: 1.49041307}
-  m_Children: []
+  m_Children:
+  - {fileID: 1746882271}
   m_Father: {fileID: 1359054480}
   m_RootOrder: 0
 --- !u!54 &675771065
@@ -3113,7 +3114,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1359054479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0800000057, y: 3.20000005, z: -2.36999989}
+  m_LocalPosition: {x: .0800000057, y: 3.20000005, z: -.939999998}
   m_LocalScale: {x: .796927392, y: .841760993, z: 2.32072735}
   m_Children:
   - {fileID: 675771063}
@@ -3152,14 +3153,14 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1359054479}
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!33 &1359054483
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3181,7 +3182,7 @@ MonoBehaviour:
   joystiq: {fileID: 1182524635}
   joystiqgrp: {fileID: 91503786}
   jspeed: 2
-  speed: 10
+  speed: 100
   boostMult: 10
 --- !u!58 &1359054485
 CircleCollider2D:
@@ -3532,6 +3533,74 @@ MonoBehaviour:
   - {fileID: 409561293}
   maxSpeed: 10
   minSpeed: 25
+--- !u!1 &1746882270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1746882271}
+  - 135: {fileID: 1746882273}
+  - 114: {fileID: 1746882272}
+  - 54: {fileID: 1746882274}
+  m_Layer: 0
+  m_Name: Mouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1746882271
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1746882270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 675771063}
+  m_RootOrder: 0
+--- !u!114 &1746882272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1746882270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e25a5c439efe474a8590caf1ab36e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &1746882273
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1746882270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1746882274
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1746882270}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1769139134
 GameObject:
   m_ObjectHideFlags: 0

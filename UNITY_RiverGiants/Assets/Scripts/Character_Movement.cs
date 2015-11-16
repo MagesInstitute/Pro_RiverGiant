@@ -27,30 +27,14 @@ public class Character_Movement : MonoBehaviour
 
     Vector2 startPos;
 
+    Rigidbody2D rb;
+
     // Use this for initialization
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void OnTriggerEnter2D (Collider col)
-    {
-        switch (col.tag)
-        {
-            case "Food":
-                print("Yummy");
-                Destroy(col.gameObject);
-                break;
-
-            case "Poison":
-                print("You have been poisoned");
-                break;
-
-            default:
-                print("Ouch");
-                break;
-        }
-    }
 
     public void Boost()
     {
@@ -61,7 +45,7 @@ public class Character_Movement : MonoBehaviour
     public void StopBoost()
     {
         boost = false;
-        speed = 20;
+        speed = 30;
         StartCoroutine(BoostDown_());
     }
 
@@ -95,7 +79,7 @@ public class Character_Movement : MonoBehaviour
             // Get movement of the finger since last frame
             startPos = Input.GetTouch(0).position;
 
-            cspeed = 10;
+            cspeed = 15;
 
             joystiqgrp.transform.position = startPos;
         }
@@ -121,7 +105,8 @@ public class Character_Movement : MonoBehaviour
         {
             cspeed = 0;
         }
-        transform.Translate(x/100 * cspeed * Time.deltaTime, y/100 * cspeed * Time.deltaTime, 0, Camera.main.transform);
+        rb.AddForce (new Vector2(x  * cspeed * Time.deltaTime, y  * cspeed * Time.deltaTime), ForceMode2D.Force );
+        // transform.Translate(x/100 * cspeed * Time.deltaTime, y/100 * cspeed * Time.deltaTime, 0, Camera.main.transform);
         newRotation = Quaternion.LookRotation(new Vector3(x,y,0));
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * cspeed);
     }
