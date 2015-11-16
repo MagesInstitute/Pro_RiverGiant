@@ -8,6 +8,8 @@ public class FishMovement : MonoBehaviour
     public float min = 1;
     public float tSpeed = 1;
     public float multiplier = 3;
+    public float sizeGrowth = 0.5f;
+    public int scoreValue = 10;
 
     float speed;
     Quaternion newRotation;

@@ -29,12 +29,40 @@ public class Character_Movement : MonoBehaviour
 
     Rigidbody2D rb;
 
+<<<<<<< HEAD
+=======
+    void Awake()
+    {
+        GameManager.Initialize();
+    }
+
+>>>>>>> 0731be77a3d608a1d550e5db4736013694bb23a8
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
+<<<<<<< HEAD
+=======
+    void OnTriggerEnter2D (Collider2D col)
+    {
+        switch (col.tag)
+        { 
+            case "Food":
+                GameManager.OnHitFood(col.GetComponent<FishMovement>().sizeGrowth);
+                ScoreManager.AddScore(col.GetComponent<FishMovement>().scoreValue);
+                Destroy(col.gameObject);
+                break;
+            case "Poison":
+                print("You have been poisoned");
+                break;
+            default:
+                print("Ouch");
+                break;
+        }
+    }
+>>>>>>> 0731be77a3d608a1d550e5db4736013694bb23a8
 
     public void Boost()
     {
@@ -105,8 +133,13 @@ public class Character_Movement : MonoBehaviour
         {
             cspeed = 0;
         }
+<<<<<<< HEAD
         rb.AddForce (new Vector2(x  * cspeed * Time.deltaTime, y  * cspeed * Time.deltaTime), ForceMode2D.Force );
         // transform.Translate(x/100 * cspeed * Time.deltaTime, y/100 * cspeed * Time.deltaTime, 0, Camera.main.transform);
+=======
+        rb.AddForce(new Vector2(x * cspeed * Time.deltaTime, y * cspeed * Time.deltaTime), ForceMode2D.Force);
+        //transform.Translate(x/100 * cspeed * Time.deltaTime, y/100 * cspeed * Time.deltaTime, 0, Camera.main.transform);
+>>>>>>> 0731be77a3d608a1d550e5db4736013694bb23a8
         newRotation = Quaternion.LookRotation(new Vector3(x,y,0));
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * cspeed);
     }

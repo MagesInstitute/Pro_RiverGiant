@@ -14,7 +14,7 @@ public class Suck_It : MonoBehaviour {
     {
 	}
 	
-    void OnTriggerEnter (Collider col)
+    void OnTriggerEnter2D (Collider2D col)
     {
         if (col.tag == "Player")
         {
